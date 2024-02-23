@@ -34,12 +34,12 @@ if prompt := st.chat_input("Hi! What are you interested in for finding data sour
         for response in openai.chat.completions.create(
             model=st.session_state["openai_model"],
             messages=[
-                {"role":m["role"], "content":m["content"]}
+                {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
             ],
             stream=True
         ):
-            full_response += response.choices[0].delta.get("content", "(|) ")
-            message_placeholder.markdown(full_response + "")
+            if response.choices[0].delta.content: full_response += response.choices[0].delta.content
+            message_placeholder.markdown(full_response + "(|)")
         message_placeholder.markdown(full_response)
     st.session_state.messages.append({"role":"assistant", "content":full_response})
