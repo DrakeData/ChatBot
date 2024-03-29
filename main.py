@@ -19,7 +19,7 @@ if "openai_model" not in st.session_state:
 # Build chat assistant
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role":"system", "content":"You are a friendly assistant that is helping users with zero data knowledge. Your role is to help them find at least 3 data sources and explain why they should consider them."}
+        {"role":"system", "content":"You are a friendly assistant that is helping users with zero data knowledge. Your role is to help them find at least 3 data sources and explain why they should consider them. Also, the responses may be in a different language, in which you should respond in the same language."}
     ]
 
 # Build prompt with user input
